@@ -4,11 +4,21 @@
 package com.weatherboi
 
 import kotlin.test.Test
-import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 class AppTest {
-    @Test fun appHasAGreeting() {
-        val classUnderTest = App()
-        assertNotNull(classUnderTest.greeting, "app should have a greeting")
+    @Test fun appCanGetWeatherInfoForClearSky() {
+        val info = getWeatherInfo(0, true)
+        assertTrue(info.description.contains("Clear"), "Clear sky should be recognized")
+    }
+
+    @Test fun appCanGetWeatherInfoForOvercast() {
+        val info = getWeatherInfo(3, true)
+        assertTrue(info.description.contains("Overcast"), "Overcast should be recognized")
+    }
+
+    @Test fun appCanStripAnsiCodes() {
+        val stripped = stripAnsi("\u001B[1;31mHello\u001B[0m")
+        assertTrue(stripped == "Hello", "ANSI codes should be stripped")
     }
 }

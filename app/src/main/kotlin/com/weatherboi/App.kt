@@ -62,7 +62,7 @@ data class DailyForecast(
 
 data class WeatherInfo(
     val description: String,
-    val emoji: String,
+    val icon: String,
     val asciiArt: List<String>,
     val colorCode: String
 )
@@ -87,92 +87,92 @@ fun getWeatherInfo(code: Int, isDay: Boolean): WeatherInfo {
     val purple = "\u001B[1;35m"
 
     val sunnyAscii = listOf(
-        "    \\   /  ",
-        "     .-.   ",
-        "  ─ (   ) ─",
-        "     `-`   ",
-        "    /   \\  "
+        "    \\   /     ",
+        "     .-.      ",
+        "   --(   )--  ",
+        "     `-'      ",
+        "    /   \\     "
     )
     val moonAscii = listOf(
-        "   .-.     ",
-        "  /   \\    ",
-        "  \\    `-. ",
-        "   \\      )",
-        "    `----' "
+        "   .-.         ",
+        "  /   \\        ",
+        "  \\    `-.    ",
+        "   \\      )   ",
+        "    `----'     "
     )
     val cloudyAscii = listOf(
-        "           ",
-        "     .--.  ",
-        "  .-(    )--.",
+        "              ",
+        "     .--.     ",
+        "  .-(    )--. ",
         " (           )",
-        "  `---------'"
+        "  `---------' "
     )
     val rainAscii = listOf(
-        "     .--.  ",
-        "  .-(    )--.",
+        "     .--.     ",
+        "  .-(    )--. ",
         " (           )",
-        "  `---------'",
-        "  ` ` ` ` ` `"
+        "  `---------' ",
+        "  ` ` ` ` ` ` "
     )
     val snowAscii = listOf(
-        "     .--.  ",
-        "  .-(    )--.",
+        "     .--.     ",
+        "  .-(    )--. ",
         " (           )",
-        "  `---------'",
-        "  *  *  *  * "
+        "  `---------' ",
+        "  *  *  *  *  "
     )
     val stormAscii = listOf(
-        "     .--.  ",
-        "  .-(    )--.",
+        "     .--.     ",
+        "  .-(    )--. ",
         " (           )",
-        "  `---------'",
-        "     ⚡   ⚡  "
+        "  `---------' ",
+        "     !   !    "
     )
     val fogAscii = listOf(
-        "  = = = = = =",
-        "   = = = = = ",
-        "  = = = = = =",
-        "   = = = = = ",
-        "  = = = = = ="
+        "  = = = = = = ",
+        "   = = = = =  ",
+        "  = = = = = = ",
+        "   = = = = =  ",
+        "  = = = = = = "
     )
 
     return when (code) {
         0 -> if (isDay) {
-            WeatherInfo("Clear Sky", "☀️", sunnyAscii, yellow)
+            WeatherInfo("Clear Sky", "(sun)", sunnyAscii, yellow)
         } else {
-            WeatherInfo("Clear Night", "🌙", moonAscii, blue)
+            WeatherInfo("Clear Night", "(moon)", moonAscii, blue)
         }
         1, 2 -> if (isDay) {
-            WeatherInfo("Partly Cloudy", "⛅", listOf(
-                "   \\  /    ",
-                "  _ /\"\"\\   ",
-                "   (_  _)-.",
-                "  (        )",
-                "   `------' "
+            WeatherInfo("Partly Cloudy", "(cloud)", listOf(
+                "   \\  /      ",
+                "  _ /\"\"\\     ",
+                "   (_  _)-.  ",
+                "  (        ) ",
+                "   `------'  "
             ), yellow)
         } else {
-            WeatherInfo("Partly Cloudy", "⛅", listOf(
-                "   .-.     ",
-                "  /   \\.-. ",
-                "  \\  (_ _)-.",
+            WeatherInfo("Partly Cloudy", "(cloud)", listOf(
+                "   .-.       ",
+                "  /   \\.-.   ",
+                "  \\  (_ _)-. ",
                 "   (        )",
                 "    `------' "
             ), blue)
         }
-        3 -> WeatherInfo("Overcast", "☁️", cloudyAscii, gray)
-        45, 48 -> WeatherInfo("Foggy", "🌫️", fogAscii, gray)
-        51, 53, 55 -> WeatherInfo("Drizzle", "🌧️", rainAscii, cyan)
-        56, 57 -> WeatherInfo("Freezing Drizzle", "🌨️", snowAscii, white)
-        61, 63 -> WeatherInfo("Light Rain", "🌧️", rainAscii, cyan)
-        65 -> WeatherInfo("Heavy Rain", "🌧️", rainAscii, cyan)
-        66, 67 -> WeatherInfo("Freezing Rain", "🌨️", snowAscii, white)
-        71, 73 -> WeatherInfo("Light Snow", "❄️", snowAscii, white)
-        75 -> WeatherInfo("Heavy Snow", "❄️", snowAscii, white)
-        77 -> WeatherInfo("Snow Grains", "❄️", snowAscii, white)
-        80, 81, 82 -> WeatherInfo("Showers", "🌦️", rainAscii, cyan)
-        85, 86 -> WeatherInfo("Snow Showers", "🌨️", snowAscii, white)
-        95, 96, 99 -> WeatherInfo("Thunderstorm", "⚡", stormAscii, purple)
-        else -> WeatherInfo("Unknown", "❓", cloudyAscii, gray)
+        3 -> WeatherInfo("Overcast", "(cloud)", cloudyAscii, gray)
+        45, 48 -> WeatherInfo("Foggy", "(fog)", fogAscii, gray)
+        51, 53, 55 -> WeatherInfo("Drizzle", "(rain)", rainAscii, cyan)
+        56, 57 -> WeatherInfo("Freezing Drizzle", "(snow)", snowAscii, white)
+        61, 63 -> WeatherInfo("Light Rain", "(rain)", rainAscii, cyan)
+        65 -> WeatherInfo("Heavy Rain", "(rain)", rainAscii, cyan)
+        66, 67 -> WeatherInfo("Freezing Rain", "(snow)", snowAscii, white)
+        71, 73 -> WeatherInfo("Light Snow", "(snow)", snowAscii, white)
+        75 -> WeatherInfo("Heavy Snow", "(snow)", snowAscii, white)
+        77 -> WeatherInfo("Snow Grains", "(snow)", snowAscii, white)
+        80, 81, 82 -> WeatherInfo("Showers", "(rain)", rainAscii, cyan)
+        85, 86 -> WeatherInfo("Snow Showers", "(snow)", snowAscii, white)
+        95, 96, 99 -> WeatherInfo("Thunderstorm", "(storm)", stormAscii, purple)
+        else -> WeatherInfo("Unknown", "(?)", cloudyAscii, gray)
     }
 }
 
@@ -199,13 +199,13 @@ suspend fun fetchWeather(lat: Double, lon: Double): WeatherResponse? {
 }
 
 suspend fun <T> withSpinner(message: String, block: suspend () -> T): T {
-    val frames = listOf("⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏")
+    val frames = listOf("-", "\\", "|", "/")
     var frameIndex = 0
     val job = CoroutineScope(Dispatchers.Default).launch {
         while (isActive) {
             print("\r\u001B[1;36m${frames[frameIndex]}\u001B[0m $message")
             frameIndex = (frameIndex + 1) % frames.size
-            delay(80)
+            delay(120)
         }
     }
     try {
@@ -234,48 +234,62 @@ fun renderWeatherCard(city: String, country: String?, state: String?, weather: W
     val ascii = info.asciiArt
     val color = info.colorCode
 
-    val rightSide = listOf(
+    // Build the weather data lines (no ANSI in length calc)
+    val rightSideRaw = listOf(
+        locationName,
+        "${info.icon}  ${info.description}",
+        "Temp:        ${current.temperature} C  (Feels like ${current.apparentTemperature} C)",
+        "Humidity:    ${current.humidity} %",
+        "Wind Speed:  ${current.windSpeed} km/h",
+        "Precip:      ${current.precipitation} mm"
+    )
+    val rightSideStyled = listOf(
         "$bold$locationName$reset",
-        "${info.emoji}  $bold$color${info.description}$reset",
-        "🌡️  Temp:        $bold${current.temperature}°C$reset (Feels like ${current.apparentTemperature}°C)",
-        "💧  Humidity:    $bold${current.humidity}%$reset",
-        "💨  Wind Speed:  $bold${current.windSpeed} km/h$reset",
-        "🌧️  Precip:      $bold${current.precipitation} mm$reset"
+        "$bold$color${info.icon}  ${info.description}$reset",
+        "Temp:        $bold${current.temperature} C$reset  (Feels like ${current.apparentTemperature} C)",
+        "Humidity:    $bold${current.humidity} %$reset",
+        "Wind Speed:  $bold${current.windSpeed} km/h$reset",
+        "Precip:      $bold${current.precipitation} mm$reset"
     )
 
     val padding = 2
-    val maxRightLength = rightSide.map { stripAnsi(it).length }.maxOrNull() ?: 0
+    val maxRightLength = rightSideRaw.maxOf { it.length }
     val asciiWidth = ascii.firstOrNull()?.length ?: 0
+    // innerWidth = left border + padding + ascii + separator + right text + padding + right border = total visible width of box
     val innerWidth = asciiWidth + 3 + maxRightLength + (padding * 2)
+    val boxWidth = innerWidth + 2 // +2 for the two border chars
 
-    val topBorder = "┌" + "─".repeat(innerWidth) + "┐"
-    val bottomBorder = "└" + "─".repeat(innerWidth) + "┘"
+    val horizontal = "-".repeat(innerWidth)
 
     println()
-    println("$cyan$topBorder$reset")
+    println("$cyan+$horizontal+$reset")
 
-    val maxLines = maxOf(ascii.size, rightSide.size)
+    val maxLines = maxOf(ascii.size, rightSideStyled.size)
     for (i in 0 until maxLines) {
         val asciiLine = ascii.getOrElse(i) { " ".repeat(asciiWidth) }
-        val rightLine = rightSide.getOrElse(i) { "" }
+        val rightLine = rightSideStyled.getOrElse(i) { "" }
 
         val coloredAscii = "$color$asciiLine$reset"
-        val separator = " │ "
+        val separator = " | "
 
-        val textLength = stripAnsi(rightLine).length
-        val spacesNeeded = maxRightLength - textLength
+        // Pad right side to maxRightLength using plain text length
+        val plainRight = rightSideRaw.getOrElse(i) { "" }
+        val spacesNeeded = maxRightLength - plainRight.length
         val paddedRightLine = rightLine + " ".repeat(spacesNeeded)
 
         val leftSpacing = " ".repeat(padding)
         val rightSpacing = " ".repeat(padding)
 
-        println("$cyan│$reset$leftSpacing$coloredAscii$separator$paddedRightLine$rightSpacing$cyan│$reset")
+        println("$cyan|$reset$leftSpacing$coloredAscii$separator$paddedRightLine$rightSpacing$cyan|$reset")
     }
 
     // Render Forecast Section
-    println("$cyan├" + "─".repeat(innerWidth) + "┤$reset")
-    println("$cyan│$reset$bold${"3-DAY FORECAST".padStart((innerWidth + 14) / 2).padEnd(innerWidth)}$reset$cyan│$reset")
-    println("$cyan├" + "─".repeat(innerWidth) + "┤$reset")
+    println("$cyan|$horizontal|$reset")
+    val headerText = "3-DAY FORECAST"
+    val headerPadding = (innerWidth - headerText.length) / 2
+    val headerLine = " ".repeat(headerPadding) + "$bold$headerText$reset" + " ".repeat(innerWidth - headerPadding - headerText.length)
+    println("$cyan|$reset$headerLine$cyan|$reset")
+    println("$cyan|$horizontal|$reset")
 
     val daily = weather.daily
     val limit = minOf(3, daily.time.size)
@@ -290,23 +304,27 @@ fun renderWeatherCard(city: String, country: String?, state: String?, weather: W
         val tempMin = daily.tempMin[i]
         val tempMax = daily.tempMax[i]
 
-        val forecastText = "${fInfo.emoji}  ${fInfo.description}"
-        val tempText = "Min: ${tempMin}°C  Max: ${tempMax}°C"
+        val forecastPlain = "${fInfo.icon}  ${fInfo.description}"
+        val forecastStyled = "${fInfo.colorCode}${fInfo.icon}  ${fInfo.description}$reset"
+        val tempText = "Min: ${tempMin} C  Max: ${tempMax} C"
 
-        val leftText = "  $dayOfWeek:  ${fInfo.colorCode}$forecastText$reset"
-        val plainLeftLength = 2 + dayOfWeek.length + 3 + stripAnsi(forecastText).length
+        // Build left part: "  Tue:  (rain)  Showers"
+        val leftPlain = "  $dayOfWeek:  $forecastPlain"
+        val leftStyled = "  $dayOfWeek:  $forecastStyled"
 
-        val spacesNeeded = innerWidth - plainLeftLength - tempText.length - 2
-        val finalLine = leftText + " ".repeat(maxOf(1, spacesNeeded)) + tempText + "  "
+        // Calculate spaces between left and temp text
+        val middleSpaces = innerWidth - leftPlain.length - tempText.length - 2 // -2 for trailing spaces after temp
+        val finalLine = leftStyled + " ".repeat(maxOf(1, middleSpaces)) + tempText + "  "
 
-        val printableLength = stripAnsi(finalLine).length
-        val trailingSpaces = innerWidth - printableLength
+        // Pad to exact innerWidth
+        val printableLen = stripAnsi(finalLine).length
+        val trailingSpaces = innerWidth - printableLen
         val outputLine = finalLine + " ".repeat(maxOf(0, trailingSpaces))
 
-        println("$cyan│$reset$outputLine$cyan│$reset")
+        println("$cyan|$reset$outputLine$cyan|$reset")
     }
 
-    println("$cyan$bottomBorder$reset")
+    println("$cyan+$horizontal+$reset")
     println()
 }
 
@@ -320,7 +338,7 @@ suspend fun fetchAndDisplayWeather(city: String) {
     }
 
     if (geocodeResult == null) {
-        println("  \u001B[1;31m❌ Couldn't find that city, boi! Make sure the spelling is right.\u001B[0m")
+        println("  \u001B[1;31m[!] Couldn't find that city, boi! Make sure the spelling is right.\u001B[0m")
         return
     }
 
@@ -329,7 +347,7 @@ suspend fun fetchAndDisplayWeather(city: String) {
     }
 
     if (weatherResult == null) {
-        println("  \u001B[1;31m❌ Couldn't fetch the weather data, boi! Check your internet connection.\u001B[0m")
+        println("  \u001B[1;31m[!] Couldn't fetch the weather data, boi! Check your internet connection.\u001B[0m")
         return
     }
 
@@ -371,13 +389,13 @@ fun main(args: Array<String>) = runBlocking {
     val bannerColor = "\u001B[1;36m"
     val bannerReset = "\u001B[0m"
     println("""
-        $bannerColor██╗    ██╗███████╗ █████╗ ████████╗██╗  ██╗███████╗██████╗     ██████╗  ██████╗ ██╗
-        ██║    ██║██╔════╝██╔══██╗╚══██╔══╝██║  ██║██╔════╝██╔══██╗    ██╔══██╗██╔═══██╗██║
-        ██║ █╗ ██║█████╗  ███████║   ██║   ███████║█████╗  ██████╔╝    ██████╔╝██║   ██║██║
-        ██║███╗██║██╔══╝  ██╔══██║   ██║   ██╔══██║██╔══╝  ██╔══██╗    ██╔══██╗██║   ██║██║
-        ╚███╔███╔╝███████╗██║  ██║   ██║   ██║  ██║███████╗██║  ██║    ██████╔╝╚██████╔╝██║
-         ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═════╝  ╚═════╝ ╚═╝$bannerReset
-    """.trimIndent())
+ __        _______    _  _____ _   _ _____ ____    ____   ___ ___ 
+ \ \      / / ____|  / \|_   _| | | | ____|  _ \  | __ ) / _ \_ _|
+  \ \ /\ / /|  _|   / _ \ | | | |_| |  _| | |_) | |  _ \| | | | | 
+   \ V  V / | |___ / ___ \| | |  _  | |___|  _ <  | |_) | |_| | | 
+    \_/\_/  |_____/_/   \_\_| |_| |_|_____|_| \_\ |____/ \___/___|
+""".trimIndent())
+
     println("        \u001B[1;32mWelcome to Weather Boi - Your Aesthetic Weather Companion!\u001B[0m")
     println()
 
@@ -389,10 +407,10 @@ fun main(args: Array<String>) = runBlocking {
     }
 
     while (true) {
-        print("\u001B[1;35mWho's your city, boi? 🧐\u001B[0m (or type 'exit' to quit) \u001B[1;33m>\u001B[0m ")
+        print("\u001B[1;35mWho's your city, boi? \u001B[0m(or type 'exit' to quit) \u001B[1;33m>\u001B[0m ")
         val input = readlnOrNull()?.trim()
         if (input.isNullOrEmpty() || input.equals("exit", ignoreCase = true)) {
-            println("\u001B[1;36mGoodbye, boi! 👋\u001B[0m")
+            println("\u001B[1;36mGoodbye, boi!\u001B[0m")
             break
         }
         fetchAndDisplayWeather(input)
