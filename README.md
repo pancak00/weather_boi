@@ -1,4 +1,4 @@
-# 🌤️ Weather Boi
+# Weather Boi
 
 <p align="center">
   <img src="https://img.shields.io/badge/Kotlin-2.3-purple?style=for-the-badge&logo=kotlin" alt="Kotlin" />
@@ -20,7 +20,7 @@
 
 ---
 
-## ✨ Features
+## Features
 
 * 🎨 **Rich Terminal Aesthetics:** Utilizes ANSI escape codes for coloring and styling text, drawing beautiful borders dynamically adjusted to content length.
 * 🔊 **Synth Audio Cues:** Programmatically generates a clear, high-pitched `A5` synth ping on startup (with a standard terminal bell `\u0007` fallback for headless environments).
@@ -30,7 +30,7 @@
 
 ---
 
-## 🛠️ Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 * **Java Development Kit (JDK 21 or higher)**
@@ -52,7 +52,7 @@ sdk install gradle
 
 ---
 
-## 🚀 Running the App
+## Running the App
 
 Navigate to the project root directory and execute the Gradle tasks:
 
@@ -72,7 +72,7 @@ Get the weather report for a specific city immediately and exit:
 
 ---
 
-## 📸 Layout Showcase
+## Layout Showcase
 
 ```text
 ┌──────────────────────────────────────────────────────────────┐
@@ -93,7 +93,7 @@ Get the weather report for a specific city immediately and exit:
 
 ---
 
-## 📝 Technologies Used
+## Technologies Used
 - **Kotlin:** Modern, concise JVM language.
 - **Gradle Kotlin DSL:** Type-safe build tool configuration.
 - **Ktor Client (CIO):** Asynchronous HTTP requests.
