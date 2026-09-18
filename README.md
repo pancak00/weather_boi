@@ -22,11 +22,11 @@
 
 ## Features
 
-* 🎨 **Rich Terminal Aesthetics:** Utilizes ANSI escape codes for coloring and styling text, drawing beautiful borders dynamically adjusted to content length.
-* 🔊 **Synth Audio Cues:** Programmatically generates a clear, high-pitched `A5` synth ping on startup (with a standard terminal bell `\u0007` fallback for headless environments).
-* ⛅ **Interactive & CLI Modes:** Run the tool with command-line arguments for a quick forecast check, or fire up the interactive mode to query multiple cities sequentially.
-* 🆓 **Zero Keys Needed:** Uses the **Open-Meteo Geocoding and Weather APIs** which require no accounts, API keys, or signup verification.
-* 🌀 **Text-Based Spinners:** Showcases smooth terminal loading spinners while fetching and geocoding details from the server.
+* **Rich Terminal Aesthetics:** Utilizes ANSI escape codes for coloring and styling text, drawing beautiful borders dynamically adjusted to content length.
+* **Synth Audio Cues:** Programmatically generates a clear, high-pitched `A5` synth ping on startup (with a standard terminal bell `\u0007` fallback for headless environments).
+* **Interactive & CLI Modes:** Run the tool with command-line arguments for a quick forecast check, or fire up the interactive mode to query multiple cities sequentially.
+* **Zero Keys Needed:** Uses the **Open-Meteo Geocoding and Weather APIs** which require no accounts, API keys, or signup verification.
+* **Text-Based Spinners:** Showcases smooth terminal loading spinners while fetching and geocoding details from the server.
 
 ---
 
